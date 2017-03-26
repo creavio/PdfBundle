@@ -1,0 +1,4 @@
+services:
+#    creavio_pdf.example:
+#        class: Creavio\PdfBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
