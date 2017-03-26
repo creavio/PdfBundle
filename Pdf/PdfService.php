@@ -13,6 +13,7 @@ class PdfService
 	 */
 	public function getMpdf($options = [])
 	{
+		// TODO add options
 		return new \mPDF('utf-8', 'A4');
 	}
 
