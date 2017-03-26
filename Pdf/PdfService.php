@@ -13,7 +13,7 @@ class PdfService
 	 */
 	public function getMpdf($options = [])
 	{
-		return new \mPDF(array_merge($options, ['utf-8', 'A4']));
+		return new \mPDF('utf-8', 'A4');
 	}
 
 	/**
