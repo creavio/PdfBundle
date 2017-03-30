@@ -1,3 +1,4 @@
 services:
   creavio.pdf:
     class: Creavio\PdfBundle\Pdf\PdfService
+    arguments: ["@service_container"]

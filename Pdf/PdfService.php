@@ -3,10 +3,24 @@
 namespace Creavio\PdfBundle\Pdf;
 
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class PdfService
 {
+	/**
+	 * @var ContainerInterface
+	 */
+	private $container;
+
+	/**
+	 * @param ContainerInterface $container
+	 */
+	public function __construct(ContainerInterface $container)
+	{
+		$this->container = $container;
+	}
+
 	/**
 	 * @param array $options
 	 * @return \mPDF
@@ -31,13 +45,20 @@ class PdfService
 			'htmlClose' => null,
 			'filename' => '',
 			'destination' => 'S',
-			'mpdf' => null
+			'mpdf' => null,
+			'cssFile' => null
 		];
 		$options = array_merge($defaultOptions, $options);
 
-		if(!$options['mpdf']) {
+		if (!$options['mpdf']) {
 			/** @var \mPDF */
 			$options['mpdf'] = $this->getMpdf($options['constructorArgs']);
+		}
+
+		if ($options['cssFile']) {
+			$path = $this->container->get('kernel')->locateResource($options['cssFile']);
+			$stylesheet = file_get_contents($path);
+			$options['mpdf']->WriteHTML($stylesheet, 1);
 		}
 
 		$options['mpdf']->WriteHtml($html, $options['htmlMode'], $options['htmlInitialise'], $options['htmlClose']);
