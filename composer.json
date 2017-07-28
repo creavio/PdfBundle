@@ -3,7 +3,7 @@
   "type": "symfony-bundle",
   "description": "Symfony Bundle for generating PDF with mPDF",
   "keywords": ["pdf", "mpdf", "symfony2", "symfony3", "bundle", "creavio"],
-  "homepage": "git@gitlab.creavio.com:Bundles/PdfBundle.git",
+  "homepage": "https://github.com/creavio/PdfBundle",
   "license": "MIT",
   "authors": [
     {
