@@ -6,6 +6,10 @@ namespace Creavio\PdfBundle\Pdf;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class PdfService
+ * @package Creavio\PdfBundle\Pdf
+ */
 class PdfService
 {
 	/**
@@ -29,6 +33,18 @@ class PdfService
 	{
 		// TODO add options
 		return new \mPDF('utf-8', 'A4');
+	}
+
+	/**
+	 * @param $mpdf
+	 * @param $html
+	 * @return mixed
+	 */
+	public function setHeader($mpdf, $html)
+	{
+		$mpdf->SetHTMLHeader($html);
+
+		return $mpdf;
 	}
 
 	/**
