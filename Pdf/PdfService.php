@@ -25,24 +25,34 @@ class PdfService
 		$this->container = $container;
 	}
 
+
 	/**
-	 * @param array $options
+	 * @param string $mode
+	 * @param string $format
+	 * @param int $default_font_size
+	 * @param string $default_font
+	 * @param int $mgl
+	 * @param int $mgr
+	 * @param int $mgt
+	 * @param int $mgb
+	 * @param int $mgh
+	 * @param int $mgf
+	 * @param string $orientation
 	 * @return \mPDF
 	 */
-	public function getMpdf($options = [])
+	public function getMpdf($mode='', $format='A4', $default_font_size=0, $default_font='', $mgl=15, $mgr=15, $mgt=16, $mgb=16, $mgh=9, $mgf=9, $orientation='P')
 	{
-		// TODO add options
-		return new \mPDF('utf-8', 'A4');
+		return new \mPDF($mode, $format, $default_font_size, $default_font, $mgl, $mgr, $mgt, $mgb, $mgh, $mgf, $orientation);
 	}
 
 	/**
-	 * @param $mpdf
+	 * @param \mPDF $mpdf
 	 * @param $html
 	 * @return mixed
 	 */
 	public function setHeader($mpdf, $html)
 	{
-		$mpdf->SetHTMLHeader($html);
+		$mpdf->SetHTMLHeader($html, '', true);
 
 		return $mpdf;
 	}
